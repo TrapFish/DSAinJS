@@ -1,31 +1,25 @@
-//count of the largest consecutive number
+//Binary Search
 
-
-function largestContinuousNumber(arr, n){
-    let arrLength = arr.length;
-    if(n > arrLength) return false;
-    let numOfContinousSubArray = arrLength - n + 1;
-    let max = 0;
-    let subArarys= [];
-
-    for(let i = 0; i < numOfContinousSubArray; i++){
-      subArarys.push(arr.slice(i , i + n));
-    }
-
-    for(let j =0 ; j < subArarys.length; j++){
-       let sum = subArarys[j].reduce((acc, value)=>{
-          return acc+=value;
-       }, 0)
-       console.log("Sum is ::", sum)
-       if(sum > max){
-        max = sum;
-       }
-    }
-    console.log("max is ::" , max)
-    console.log("Line 5 :: ", arr, n, arrLength, numOfContinousSubArray,subArarys)
+function binarySearch(sortedArray, targetValue){
    
+   let left = 0;
+   let right = sortedArray.length - 1;
+   while(left <= right){
+     let mid = Math.floor((left + right) / 2);
+     
+     if(sortedArray[mid] === targetValue){
+       return mid;
+     } else if(sortedArray[mid] < targetValue){
+      left = mid + 1;
+     } else{
+      right = mid -1;
+     }
+   }
+   return -1;
 }
 
-let arr=[1,2,3,4,3,5,4,6,7,8];
-let n = 4;
-largestContinuousNumber(arr,n)
+const sortedArray = [1, 2, 3, 5, 7, 11, 13];
+const targetValue = 5;
+const foundValue = binarySearch(sortedArray, targetValue);
+
+
