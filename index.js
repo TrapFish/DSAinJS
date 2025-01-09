@@ -1,25 +1,32 @@
-//Binary Search
+//checking square in array
+// [1,2,3,4]-> [1, 9, 4,16]
 
-function binarySearch(sortedArray, targetValue){
-   
-   let left = 0;
-   let right = sortedArray.length - 1;
-   while(left <= right){
-     let mid = Math.floor((left + right) / 2);
-     
-     if(sortedArray[mid] === targetValue){
-       return mid;
-     } else if(sortedArray[mid] < targetValue){
-      left = mid + 1;
-     } else{
-      right = mid -1;
-     }
-   }
-   return -1;
+
+function arrayCheck(val, valA){
+    let map1 = {};
+    let map2 = {};
+
+    for(let i of val){
+      map1[i] = (map1[i] || 0) + 1;
+    }
+    for(let i of valA){
+      map2[i] = (map2[i] || 0) + 1;
+    }
+
+    console.log("Line 16 ::", map1, map2)
+
+    for(key in map1){
+      if(!map2[key * key]){
+        return false;
+      }
+      if(map1[key] !== map2[key * key]){
+        return false;
+      }
+    }
+    return true;
 }
 
-const sortedArray = [1, 2, 3, 5, 7, 11, 13];
-const targetValue = 5;
-const foundValue = binarySearch(sortedArray, targetValue);
+let arr1= [1,2,3,4];
+let arr2 =[1,4,8,16];
 
-
+console.log(arrayCheck(arr1, arr2));
