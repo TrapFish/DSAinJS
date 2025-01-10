@@ -2,23 +2,24 @@ function sortArray(arr) {
   if (arr.length <= 1) {
     return arr; // Base case: array with 0 or 1 element is already sorted
   }
-
-  const pivot = arr[Math.floor(Math.random() * arr.length)]; // Select a random pivot
+ 
+  const middleValue = arr[Math.floor(Math.random() * arr.length)];
+  
   const less = [];
-  const greater = [];
-  const equal = [];
+  const great = [];
+  const mid = [];
 
-  for (const num of arr) {
-    if (num < pivot) {
+  for(const num of arr){
+    if(num < middleValue){
       less.push(num);
-    } else if (num > pivot) {
-      greater.push(num);
-    } else {
-      equal.push(num);
+    }else if(num > middleValue){
+      great.push(num);
+    }else{
+      mid.push(middleValue)
     }
   }
 
-  return [...sortArray(less), ...equal, ...sortArray(greater)];
+  return [...sortArray(less) , ...mid , ...sortArray(great)]
 }
 
 // Example usage:
