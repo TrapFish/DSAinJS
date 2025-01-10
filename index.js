@@ -1,35 +1,27 @@
-//sorting an array with recursion
+function sortArray(arr) {
+  if (arr.length <= 1) {
+    return arr; // Base case: array with 0 or 1 element is already sorted
+  }
 
-function sortingWithRecursion(arr){
-   if(arr.length <= 1){
-     return arr;
-   }
+  const pivot = arr[Math.floor(Math.random() * arr.length)]; // Select a random pivot
+  const less = [];
+  const greater = [];
+  const equal = [];
 
-   let middle = Math.floor(arr.length / 2);
-   let leftHalf = arr.slice(0, middle);
-   let rightHalf = arr.slice(middle);
+  for (const num of arr) {
+    if (num < pivot) {
+      less.push(num);
+    } else if (num > pivot) {
+      greater.push(num);
+    } else {
+      equal.push(num);
+    }
+  }
 
-   return merge(leftHalf, rightHalf);
+  return [...sortArray(less), ...equal, ...sortArray(greater)];
 }
 
-
-function merge(leftHalfPortion, rightHalfPortion){
-     let result = [];
-     let leftIndex = 0;
-     let rightIndex = 0;
-
-     while(leftIndex < leftHalfPortion.length && rightIndex < rightHalfPortion.length){
-        if(leftHalfPortion[leftIndex] < rightHalfPortion[rightIndex]){
-              result.push(leftHalfPortion[leftIndex]);
-              leftIndex++;
-        }else{
-          result.push(rightHalfPortion[rightIndex]);
-          rightIndex++;
-        }
-     }
-
-     console.log("data is" ,result, leftHalfPortion, rightHalfPortion, result.concat(leftHalfPortion.slice(leftIndex)).concat(rightHalfPortion.slice(rightIndex)));
-}
-
-let arr = [64, 34, 25, 12, 22, 11, 90];
-sortingWithRecursion(arr);
+// Example usage:
+const unsortedArray = [64, 34, 25, 12, 22, 11, 90];
+const sortedArray = sortArray(unsortedArray);
+console.log("Sorted array:", sortedArray);
