@@ -1,17 +1,17 @@
-//bubble sort
+//insertion sort 
 
-
-function bubbleSort(arr){
-  for(let i = arr.length; i > 0 ; i--){
-    console.log("Arr is ::", arr[i]);
-    for(let j = 0; j < i-1; j++){
-      if(arr[j]>arr[j+1]){
-        [arr[j], arr[j+1]] = [arr[j+1], arr[j]]
-      }
+function insertionSort(inarr){
+  for(i = 1; i < inarr.length ; i++){
+    let current = inarr[i];
+    let j = i-1;
+    while(j >= 0 && inarr[j]>current){
+      inarr[j+1] = inarr[j];
+      j= j-1;
     }
-  } 
-  return arr;
+    inarr[j+1]= current;
+  }
+return inarr;
 }
 
-let a = [4,3,5,6,2,90,54,55,34];
-bubbleSort(a)
+let arr = [8,2,4,1,3]
+insertionSort(arr)
